@@ -8,7 +8,7 @@ export const getGreetings = createAsyncThunk(
       const response = await axios.get('http://127.0.0.1:3000/api/v1/random_greeting');
       return response.data;
     } catch (error) {
-      console.error(error);
+      return { error: 'An error occurred' };
     }
   },
 );
@@ -37,7 +37,7 @@ const greetingsSlice = createSlice({
         state.loading = false;
         state.hasErrors = true;
       });
-  }
+  },
 });
 
 export default greetingsSlice.reducer;
